@@ -1,0 +1,11 @@
+# トム・ハンクス（Tom Hanks）が出演するすべての映画名を取得してください。
+match (tom:Person {name: 'Tom Hanks'})-[:ACTED_IN]->(MOVIE)
+return tom, MOVIE
+
+# 映画「Stand By Me」と、映画「RescueDawn」で共通している出演者名をすべて取得してください。
+MATCH (mm:Movie {title: "RescueDawn"})<-[:ACTED_IN]-(actors)-[:ACTED_IN]->(m:Movie {title: "Stand By Me"})
+return actors
+
+# 1950年~2000年に公開された映画に出演している人物の中で、生年月日が1930年以前の人物名をすべて取得してください。
+MATCH (n:Movie)<-[:ACTED_IN]-(actors) where n.released >= 1950 and n.released <= 2000 and actors.born <= 1930
+RETURN actors
