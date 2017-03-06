@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# development of neo4j
+/db/neo4j/development
